@@ -16,7 +16,11 @@ def get_recommendation(movie_name):
   return indices
 
 def get_url(id):
-  response = requests.get('http://www.omdbapi.com/?i={}&apikey=604c0287'.format(id))
+  headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+    'Referer': 'https://www.google.com/'
+  }
+  response = requests.get('http://www.omdbapi.com/?i={}&apikey=604c0287'.format(id), headers=headers)
   return json.loads(response.text)['Poster']
 
 st.title('Movie Recommendation')
